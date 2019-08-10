@@ -1,0 +1,15 @@
+﻿{
+  "short_name": "Rangers",
+  "name": "Ranger App Test",
+  "icons": [
+    {
+      "src": "/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#b79350",
+  "display": "standalone",
+  "theme_color": "#b79350"
+}

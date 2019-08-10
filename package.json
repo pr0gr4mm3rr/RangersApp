@@ -1,0 +1,28 @@
+{
+  "name": "rangers-app-test",
+  "version": "0.0.0",
+  "description": "RangersAppTest",
+  "private": true,
+  "author": {
+    "name": ""
+  },
+  "scripts": {
+    "build": "webpack --color",
+    "dev": "webpack-dev-server --color"
+  },
+  "devDependencies": {
+    "@types/node": "^8.10.51",
+    "@types/webpack": "^4.32.1",
+    "@types/webpack-dev-server": "^3.1.7",
+    "copy-webpack-plugin": "^5.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.1",
+    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "workbox-webpack-plugin": "^4.3.1"
+  }
+}
