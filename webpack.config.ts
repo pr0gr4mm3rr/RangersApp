@@ -19,7 +19,6 @@ let config: webpack.Configuration = {
         host: '0.0.0.0',
         https: true
     },
-
     plugins: [
         new webpack.HashedModuleIdsPlugin(),
         new HtmlWebpackPlugin({
@@ -40,6 +39,14 @@ let config: webpack.Configuration = {
             swDest: 'sw.js'
         })
     ],
+    resolve: {
+        extensions: ['.ts', '.js', '.json']
+    },
+    module: {
+        rules: [
+            { test: /\.tsx?$/, loader: 'ts-loader' }
+        ]
+    },
     devtool: 'source-map'
 }
 

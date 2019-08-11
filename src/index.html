@@ -2,7 +2,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
 <head>
-  <base href="/RangersApp/">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -111,12 +110,18 @@
       animation: rotator 10s linear infinite;
     }
 
-    
+    body.loading .windmill {
+      display: block;
+    }
+
+    body:not(.loading) .windmill {
+      display: none;
+    }
   </style>
 
 
 </head>
-<body>
+<body class="loading">
 
   <svg width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" id="windmill-ref">
     <g id="windmill">
@@ -201,7 +206,8 @@
             })
           })
         } catch (e) {
-          console.error(e);
+          console.error(e.message);
+          console.error(e.stack);
         }
       }
     })();
