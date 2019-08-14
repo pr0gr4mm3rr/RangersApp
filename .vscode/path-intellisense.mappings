@@ -1,0 +1,7 @@
+{
+  "path-intellisense.mappings": {
+    "Assets": "${workspaceRoot}/src/assets",
+    "Game": "${workspaceRoot}/src/world",
+    "Engine": "${workspaceRoot}/engine"
+  }
+}
