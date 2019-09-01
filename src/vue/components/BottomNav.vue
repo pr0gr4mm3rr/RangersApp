@@ -10,7 +10,7 @@
       People
     </div>
     <div class="nav-item">
-      Leaves
+      Leave
     </div>
   </nav>
 </template>
