@@ -32,7 +32,8 @@
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
-    "workbox-webpack-plugin": "^4.3.1"
+    "workbox-webpack-plugin": "^4.3.1",
+    "workbox-window": "^4.3.1"
   },
   "dependencies": {
     "idb": "^4.0.4"

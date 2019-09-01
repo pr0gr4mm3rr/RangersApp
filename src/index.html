@@ -54,7 +54,7 @@
       text-align: center;
     }
 
-    #install-btn {
+    .lifecycleBtn {
       display: none;
       position: absolute;
       right: 1em;
@@ -64,7 +64,7 @@
       padding: 8px;
     }
 
-    #install-btn.active {
+    .lifecycleBtn.active {
       display: inline-block;
     }
 
@@ -163,8 +163,11 @@
   <div id="app">
     <nav id="navbar">
       <h4>Rangers</h4>
-      <div id="install-btn">
+      <div id="install-btn" class="lifecycleBtn">
         Install
+      </div>
+      <div id="update-btn" class="lifecycleBtn">
+        Update
       </div>
     </nav>
     <main id="screens">
