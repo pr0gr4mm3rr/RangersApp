@@ -61,7 +61,7 @@ let config: webpack.Configuration = {
             },
             { test: /\.vue$/, loader: 'vue-loader' },
             
-            { test: /\.scss$/, loader: 'sass-loader' },
+            { test: /\.scss$/, use: [ 'vue-style-loader', 'css-loader', 'sass-loader' ] },
             { test: /\.css$/, use: [ 'css-loader', 'vue-style-loader' ]}
         ]
     },

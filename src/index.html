@@ -119,6 +119,35 @@
     body:not(.loading) .windmill {
       display: none;
     }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--rusty);
+      height: var(--nav-height);
+      box-shadow: 1px -1px 1px var(--accent-transparent);
+    }
+
+    footer nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Touchscreen */
+    @media (hover: none) and (pointer: coarse) {
+      footer {
+        height: calc(var(--nav-height) / 2);
+      }
+    }
+
+    /* Desktop */
+    @media (hover: hover) and (pointer: fine) {
+      footer nav::before {
+        content: 'regular'
+      }
+    }
   </style>
 
 
@@ -169,6 +198,9 @@
         <buildings-screen v-else />
       </div>
     </main>
+    <footer>
+      <bottom-nav id="bottom-nav"></bottom-nav>
+    </footer>
   </div>
   <script>
     let debounce = (func, wait, immediate) => {
@@ -193,7 +225,7 @@
 
       let onPage = debounce(() => {
         let idx = Math.round(screens.scrollLeft / window.innerWidth);
-        navbar.textContent = pages[idx];
+        //navbar.textContent = pages[idx];
       }, 60);
 
       screens.addEventListener('scroll', onPage);

@@ -1,10 +1,7 @@
 ﻿import Vue from 'vue'
 import World from '../engine';
-import Component, {EmptyComponent} from '../engine/Component'
-import Entity, { EmptyEntity } from '../engine/Entity'
-import System from '../engine/System'
 import Settlement from './world/entities/Settlement'
-import * as components from './pages'
+import * as components from './vue'
 import { ResourceType, Quality } from 'Assets/IndustryPrototypes';
 
 addEventListener('load', () => {
