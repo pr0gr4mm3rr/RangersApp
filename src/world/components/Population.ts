@@ -23,3 +23,5 @@ export default class PopulationComp extends Component {
         Supervisors: 0
     }
 }
+
+PopulationComp.RegisterSelf();

@@ -12,6 +12,8 @@ export default class IndustrySystem extends System {
     
     ProcessEntity(entity: Entity) {
         let industries = entity.getComponent<IndustryComp>(IndustryComp);
+
+        debugger;
     }
 
     

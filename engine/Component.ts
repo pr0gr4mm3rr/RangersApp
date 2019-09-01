@@ -19,18 +19,22 @@ export default abstract class Component {
     constructor(private readonly entity: Entity) {
         
     }
+    
+    abstract Serialize(): any;
 
-    abstract Serialize(): object;
-
-    abstract Deserialize(data: object);
+    abstract Deserialize(data: any);
     
 
     //#region Static Methods
     static CreateMask(components: Array<typeof Component>): bigint {
         let mask = 0n;
 
-        for (let comp of components)
+        for (let comp of components) {
+            if (!Registry[comp.name])
+                throw new Error(`Component ${comp.name} is not in the registry, did you call .RegisterSelf?`);
+
             mask = mask | (1n << BigInt(Registry[comp.name].Id));
+        }
 
         return mask;
     }
@@ -58,6 +62,8 @@ export default abstract class Component {
 
 // Just a sample implementation
 export class EmptyComponent extends Component {
+    static get compName() { return 'EmptyComponent'; }
+    
     Serialize(): object {
         return {
             // Nothing
@@ -67,6 +73,8 @@ export class EmptyComponent extends Component {
     Deserialize(data: object) {
         // Nothing
     }
+
+    
 }
 
 EmptyComponent.RegisterSelf();

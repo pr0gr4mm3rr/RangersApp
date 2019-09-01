@@ -33,6 +33,7 @@
       margin: 0;
       background-color: var(--sandy);
       font-family: system-ui, "Segoe UI", Roboto, Oxygen, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      overflow-y: hidden;
     }
 
     #navbar {
@@ -159,7 +160,7 @@
         <svg class="windmill" viewBox="0 0 210 297" v-if="summary.loading">
           <use xlink:href="#windmill" />
         </svg>
-        <summary-screen v-else settlement="summary.settlement" />
+        <summary-screen v-else :settlement="summary.settlement" />
       </div>
       <div id="screen-buildings" class="screen">
         <svg class="windmill" viewBox="0 0 210 297" v-if="buildings.loading">
@@ -196,7 +197,8 @@
       }, 60);
 
       screens.addEventListener('scroll', onPage);
-      window.addEventListener('load', onPage)
+      window.addEventListener('load', onPage);
+      onPage();
 
       if ('serviceWorker' in navigator) {
         try {
@@ -207,6 +209,9 @@
           window.addEventListener('beforeinstallprompt', e => {
             installEvent = e;
             let btn = document.getElementById('install-btn');
+            // XXX Sometimes the element isn't rendered?
+            if (!btn)
+              return;
             btn.classList.add('active');
             btn.addEventListener('click', (event) => {
               event.preventDefault();

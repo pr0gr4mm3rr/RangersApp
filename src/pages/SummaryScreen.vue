@@ -3,8 +3,9 @@
         <p>Hello there!</p>
 
         <table>
-            <tr>
-                <td>{{ settlement.inventory.Generics.Food }}</td>
+            <tr v-for="(amount, item) in settlement.inventory.Generics" :key="item">
+                <th>{{ item }}</th>
+                <td>{{ amount }}</td>
             </tr>
         </table>
     </div>

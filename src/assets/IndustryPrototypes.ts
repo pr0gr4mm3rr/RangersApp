@@ -17,7 +17,8 @@ export interface Industry {
     description: string;
 
     // Production
-    inputs: OneOrMore<Resource>;
+    labor?: LaborAmounts;
+    inputs?: OneOrMore<Resource>;
     outputs: OneOrMore<Resource>;
 
     // Requirements
@@ -71,6 +72,12 @@ export enum FuzzyAmount {
     None, Low, Adequate, Much, Excessive
 }
 
+/** A range of qualities */
+export interface QualityRange {
+    direction: Direction;
+    reference: Quality;
+}
+
 /** What is the fuzzy amount in relation to */
 export enum FuzzyRelation {
     /** Fuzzy amount is absolute */
@@ -118,13 +125,14 @@ export enum Quality {
     Any,
     Low,
     Medium,
-    High,
-
-    Manual,
-    Engineering,
-    Supervisory,
-    Diplomatic
+    High
 }
+
+export enum LaborType {
+    Manual
+}
+
+type LaborAmounts = { [type in keyof typeof LaborType]?: number }
 
 export interface Resource {
     type: ResourceType;
@@ -139,7 +147,7 @@ export interface IncentiveResource extends Resource {
     relatedTo: FuzzyRelation;
 }
 
-let prototypes: { [key: string]: Industry } = {
+let prototypes: {[key: string]: Industry} = {
     PondWater: {
         name: "Pond Water Gathering",
         description: "Manually gathered, relatively unclean water.",
@@ -150,10 +158,8 @@ let prototypes: { [key: string]: Industry } = {
             amount: 5
         },
         naturalSources: [NaturalResource.Pond],
-        inputs: {
-            type: ResourceType.Labor,
-            quality: Quality.Manual,
-            amount: 1
+        labor: {
+            Manual: 1
         },
         outputs: {
             type: ResourceType.Water,
@@ -190,10 +196,8 @@ let prototypes: { [key: string]: Industry } = {
     ShoreFishing: {
         name: "Basic fishing",
         description: "Fishing from the shoreline.",
-        inputs: {
-            type: ResourceType.Labor,
-            quality: Quality.Manual,
-            amount: 1
+        labor: {
+            Manual: 1
         },
         outputs: {
             type: ResourceType.Food,

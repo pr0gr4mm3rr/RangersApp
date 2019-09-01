@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
 import BundleAnalyzer from 'webpack-bundle-analyzer'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
 
 let config: webpack.Configuration = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -65,6 +66,17 @@ let config: webpack.Configuration = {
         ]
     },
     devtool: 'source-map',
+    optimization: {
+        minimizer: [
+            new UglifyJSPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                    keep_classnames: true
+                }
+            })
+        ]
+    },
     performance: {
         maxEntrypointSize: process.env.NODE_ENV === 'production' 
             // 100 kB prod 

@@ -1,6 +1,6 @@
 import { System, Entity } from ".";
 
-interface SomeConstructor<T extends Entity> {
+interface SomeConstructor<T extends Entity | System> {
     new(...args): T;
 }
 
@@ -9,7 +9,7 @@ export default class World {
 
     }
 
-    private systems: Array<System> = [];
+    private Systems: Array<System> = [];
 
     private EntityIdSequence: number = 0;
     public NextEntityId(): number {
@@ -23,5 +23,12 @@ export default class World {
         entity.Initialize(...args);
 
         return entity;
+    }
+
+    RegisterSystem<T extends System>(type: SomeConstructor<T>) {
+        if (this.Systems.some(s => s instanceof type))
+            throw new Error('Duplicate system registered: ' + type.name);
+
+        this.Systems.push(new type());
     }
 }
