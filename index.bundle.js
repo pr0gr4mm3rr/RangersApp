@@ -2521,7 +2521,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "nav-item" }, [_vm._v("\n    People\n  ")]),
       _vm._v(" "),
-      _c("div", { staticClass: "nav-item" }, [_vm._v("\n    Leaves\n  ")])
+      _c("div", { staticClass: "nav-item" }, [_vm._v("\n    Leave\n  ")])
     ])
   }
 ]
