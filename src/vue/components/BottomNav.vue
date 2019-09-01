@@ -16,17 +16,31 @@
 </template>
 
 <style lang="scss" scoped>
+
+    /* Touchscreen */
+    @media (hover: none) and (pointer: coarse) {
+      nav {
+        height: calc(var(--nav-height) / 2);
+      }
+    }
+
+    /* Desktop */
+    @media (hover: hover) and (pointer: fine) {
+      nav {
+        height: var(--nav-height);
+      }
+    }
+
   nav {
     display: flex;
     flex-direction: row;
-    height: 100%;
     width: 100%;
 
     
 
     .nav-item {
       height: 100%;
-      flex: 0 0 80px;
+      flex: 1 0 80px;
       box-shadow: 1px 0px 1px var(--dark);
 
       display: flex;

@@ -126,28 +126,11 @@
       left: 0;
       right: 0;
       background-color: var(--rusty);
-      height: var(--nav-height);
+      height: fit-content;
       box-shadow: 1px -1px 1px var(--accent-transparent);
     }
 
-    footer nav {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Touchscreen */
-    @media (hover: none) and (pointer: coarse) {
-      footer {
-        height: calc(var(--nav-height) / 2);
-      }
-    }
-
-    /* Desktop */
-    @media (hover: hover) and (pointer: fine) {
-      footer nav::before {
-        content: 'regular'
-      }
-    }
+    
   </style>
 
 

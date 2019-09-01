@@ -14788,7 +14788,7 @@ exports.BottomNav = BottomNav_vue_1.default;
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "JPst")(false);
 // Module
-exports.push([module.i, "nav[data-v-019d52e1] {\n  display: flex;\n  flex-direction: row;\n  height: 100%;\n  width: 100%;\n}\nnav .nav-item[data-v-019d52e1] {\n    height: 100%;\n    flex: 0 0 80px;\n    box-shadow: 1px 0px 1px var(--dark);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n", ""]);
+exports.push([module.i, "/* Touchscreen */\n@media (hover: none) and (pointer: coarse) {\nnav[data-v-019d52e1] {\n    height: calc(var(--nav-height) / 2);\n}\n}\n\n/* Desktop */\n@media (hover: hover) and (pointer: fine) {\nnav[data-v-019d52e1] {\n    height: var(--nav-height);\n}\n}\nnav[data-v-019d52e1] {\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\nnav .nav-item[data-v-019d52e1] {\n    height: 100%;\n    flex: 1 0 80px;\n    box-shadow: 1px 0px 1px var(--dark);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n", ""]);
 
 
 /***/ }),
