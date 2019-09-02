@@ -6,6 +6,7 @@ import CopyPlugin from 'copy-webpack-plugin'
 import BundleAnalyzer from 'webpack-bundle-analyzer'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 
 let config: webpack.Configuration = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -22,6 +23,7 @@ let config: webpack.Configuration = {
         https: true
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new webpack.HashedModuleIdsPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -29,7 +31,9 @@ let config: webpack.Configuration = {
             inject: true
         }),
         new CopyPlugin([
-            { from: 'src/assets/', to: 'assets/' }
+            { from: 'src/assets/', to: 'assets/' },
+            { from: 'src/images/', to: 'images/' },
+            { from: 'src/images/', to: 'RangersApp/images/' }
         ]),
         new BundleAnalyzer.BundleAnalyzerPlugin({
             analyzerMode: 'static',
