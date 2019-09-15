@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "JPst")(false);
 // Module
-exports.push([module.i, ".screen-container[data-v-89fcdc02] {\n  display: flex;\n  width: 100vw;\n  height: 100%;\n  overflow-x: scroll;\n  scroll-snap-type: x mandatory;\n}\n.screen-container .screen[data-v-89fcdc02] {\n    flex: 0 0 100vw;\n    max-height: calc(100% - var(--footer-height));\n    scroll-snap-align: start;\n}\n", ""]);
+exports.push([module.i, ".screen-container[data-v-89fcdc02] {\n  display: flex;\n  width: 100vw;\n  height: 100%;\n  overflow-x: scroll;\n  scroll-snap-type: x mandatory;\n  scroll-snap-stop: always;\n}\n.screen-container .screen[data-v-89fcdc02] {\n    flex: 0 0 100vw;\n    max-height: calc(100% - var(--footer-height));\n    scroll-snap-align: start;\n}\n", ""]);
 
 
 /***/ }),

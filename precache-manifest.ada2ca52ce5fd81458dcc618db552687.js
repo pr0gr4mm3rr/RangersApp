@@ -92,7 +92,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "images/icon-512.png"
   },
   {
-    "revision": "e183f6e9c21010f605c2",
+    "revision": "3f70929a6bf60fc64511",
     "url": "index.bundle.js"
   },
   {
