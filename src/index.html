@@ -170,7 +170,7 @@
         Update
       </div>
     </nav>
-    <main id="screens">
+    <!--<main id="screens">
       <div id="screen-summary" class="screen">
         <svg class="windmill" viewBox="0 0 210 297" v-if="summary.loading">
           <use xlink:href="#windmill" />
@@ -183,40 +183,17 @@
         </svg>
         <buildings-screen v-else />
       </div>
+    </main>-->
+      <town-page :settlement="summary.settlement" />
     </main>
-    <footer>
-      <bottom-nav id="bottom-nav"></bottom-nav>
-    </footer>
   </div>
   <script>
-    let debounce = (func, wait, immediate) => {
-      let timeout;
-      return (...args) => {
-        let later = () => {
-          timeout = null;
-          if (!immediate) func.apply(this, args);
-        };
-        let callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(this, args);
-      };
-    }
+    
 
     (async () => {
       let screens = document.querySelector('#screens');
       let navbar = document.querySelector('#navbar');
 
-      let pages = ['Summary', 'Buildings'];
-
-      let onPage = debounce(() => {
-        let idx = Math.round(screens.scrollLeft / window.innerWidth);
-        //navbar.textContent = pages[idx];
-      }, 60);
-
-      screens.addEventListener('scroll', onPage);
-      window.addEventListener('load', onPage);
-      onPage();
 
       if ('serviceWorker' in navigator) {
         try {

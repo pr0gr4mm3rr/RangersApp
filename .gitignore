@@ -2,3 +2,5 @@ node_modules
 .vs
 
 dist/bundle-analyzer.html
+
+*.docx

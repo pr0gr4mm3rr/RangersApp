@@ -1,16 +1,7 @@
 <template>
   <nav>
-    <div class="nav-item">
-      Town
-    </div>
-    <div class="nav-item">
-      Industries
-    </div>
-    <div class="nav-item">
-      People
-    </div>
-    <div class="nav-item">
-      Leavesa
+    <div class="nav-item" v-for="(item, idx) in pageNames" v-bind:key="idx">
+      {{ item }}
     </div>
   </nav>
 </template>
@@ -56,8 +47,11 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 
-@Component
-export default class SummaryScreen extends Vue {
-    
+@Component({
+  
+})
+export default class BottomNav extends Vue {
+    @Prop({ type: Array, required: true })
+    pageNames: Array<string>;
 }
 </script>

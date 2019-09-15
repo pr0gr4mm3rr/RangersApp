@@ -5,6 +5,19 @@ import * as components from './vue'
 import { ResourceType, Quality } from 'Assets/IndustryPrototypes';
 import { Workbox } from 'workbox-window'
 
+/** Component to render some vnode directly */
+Vue.component('vnodes', {
+    functional: true,
+    render: (h, ctx) => {
+        // bubble events to parent
+        (window['foo'] || (window['foo'] = [])).push(ctx.props['vnodes']);
+        ctx.props['vnodes'].context.$on('name', (name) => {
+            console.log('Holy moly');
+        })
+        return ctx.props['vnodes']
+    }
+})
+
 addEventListener('load', () => {
     console.log('Here we go');
     document.body.classList.remove('loading');

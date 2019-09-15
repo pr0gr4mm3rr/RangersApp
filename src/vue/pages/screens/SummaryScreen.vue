@@ -15,9 +15,18 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 import { Settlement } from 'Game/entities'
+import { ResourceType, Quality } from 'Assets/IndustryPrototypes';
 
-@Component
+@Component({
+    
+})
 export default class SummaryScreen extends Vue {
-    @Prop() settlement!: Settlement;
+    @Prop({required: true}) settlement!: Settlement;
+
+    mounted() {
+        setInterval(() => {
+            this.settlement.inventory.AddItemQuanity(ResourceType.Water, Quality.Low, 1)
+        }, 250)
+    }
 }
 </script>

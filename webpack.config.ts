@@ -6,6 +6,7 @@ import CopyPlugin from 'copy-webpack-plugin'
 import BundleAnalyzer from 'webpack-bundle-analyzer'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 
 let config: webpack.Configuration = {
@@ -72,10 +73,12 @@ let config: webpack.Configuration = {
     devtool: 'source-map',
     optimization: {
         minimizer: [
-            new UglifyJSPlugin({
+            //new UglifyJSPlugin({
+            new TerserPlugin({
                 cache: true,
                 parallel: true,
-                uglifyOptions: {
+                //uglifyOptions: {
+                terserOptions: {
                     keep_classnames: true
                 }
             })

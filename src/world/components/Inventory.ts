@@ -1,6 +1,7 @@
 import { Component, Entity } from "Engine/index";
 import { UniqueItem } from 'Game/entities'
 import { ResourceType, Resource, Quality } from "Assets/IndustryPrototypes";
+import Vue from "vue";
 
 // Regretably this must be separate, otherwise they are all readonly
 type GenericKey = keyof typeof ResourceType;
@@ -46,13 +47,14 @@ export default class InventoryComp extends Component {
         let itemKey = ResourceType[item];
         let qualityKey = Quality[quality];
 
-        if (!this.Generics.hasOwnProperty(itemKey))
-            this.Generics[itemKey] = {};
+        if (!this.Generics.hasOwnProperty(itemKey)) {
+            Vue.set(this.Generics, itemKey, {});
+        }
 
         if (value < 0)
             throw new Error('Tried setting a negative amount in an inventory');
 
-        this.Generics[itemKey][qualityKey] = value;
+        Vue.set(this.Generics[itemKey], qualityKey, value);
     }
 
     /**
@@ -66,13 +68,13 @@ export default class InventoryComp extends Component {
         let qualityKey = Quality[quality];
 
         if (!this.Generics.hasOwnProperty(itemKey))
-            this.Generics[itemKey] = {};
+            Vue.set(this.Generics, itemKey, {});
 
         if (!this.Generics[itemKey].hasOwnProperty(qualityKey))
-            this.Generics[itemKey][qualityKey] = 0;
+        Vue.set(this.Generics[itemKey], qualityKey, 0);
 
         // Do not allow negative amounts
-        if (this.Generics[itemKey][qualityKey] - value < 0)
+        if (this.Generics[itemKey][qualityKey] + value < 0)
             throw new Error('Tried removing too much of an item from an inventory')
 
         this.Generics[itemKey][qualityKey] += value;
