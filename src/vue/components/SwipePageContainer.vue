@@ -1,12 +1,11 @@
 <template>
-  <div class="screen-container">
-    <div v-for="(item, idx) in children" v-bind:key="item.id" class="screen">
+  <div class="screen-container" ref="container">
+    <div v-for="(item, idx) in children" v-bind:key="item.id" class="screen" ref="screens">
       <vnodes :vnodes="item" :data-foo="idx" />
       <!-- <component v-bind:is="item" @name="onPageName(idx, event)" /> -->
     </div>
-    <footer>
-      <bottom-nav v-model="pageIdx" :pageNames="pageNames"></bottom-nav>
-    </footer>
+    
+    <bottom-nav v-model="pageIdx" :pageNames="pageNames"></bottom-nav>
   </div>
 </template>
 
@@ -14,20 +13,36 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { default as BottomNav } from './BottomNav.vue'
+import { debounce } from '../vutil'
 
 @Component({
   components: { BottomNav }
 })
 export default class SwipePageContainer extends Vue {
-
-  created() {
-    
-  }
-
   mounted() {
-    
+    this.$watch('pageIdx', (idx) => {
+      let el = this.$refs.screens[idx];
+      console.log(el);
+      el.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    this.scrollListener = debounce(this.watchScroll, 60, false);
+
+    (this.$refs.container as HTMLElement).addEventListener('scroll', this.scrollListener);
   }
 
+  destroyed() {
+    (this.$refs.container as HTMLElement).removeEventListener('scroll', this.scrollListener);
+  }
+
+  scrollListener: (this: HTMLElement, event: Event) => any;
+
+  watchScroll(event) {
+    let x = event.target.scrollLeft;
+    let page = Math.floor(x / (this.$refs.container as HTMLElement).clientWidth);
+    
+    this.pageIdx = page;
+  }
 
   get pageNames(): Array<string> {
     return this.children.map(c => {
@@ -37,7 +52,6 @@ export default class SwipePageContainer extends Vue {
       return '???';
     });
   }
-
 
   get children() {
     return this.$slots.default.filter(s => s.tag);
@@ -51,12 +65,13 @@ export default class SwipePageContainer extends Vue {
   .screen-container {
     display: flex;
     width: 100vw;
+    height: 100%;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
 
     .screen {
       flex: 0 0 100vw;
-      min-height: 100%;
+      max-height: calc(100% - var(--footer-height));
 
       scroll-snap-align: start;
     }
